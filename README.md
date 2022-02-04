@@ -78,8 +78,27 @@ By default, the Prometheus configuration sets `insecure_skip_verify: true`
 which is not recommended for production deployments as it skips SSL/TLS
 certificate validation for the CipherTrust Manager server.
 
-To trust a CA, download and store the CA certificate into the folder
-`trusted_cas`. Then configure the path and the server name of the certificate
+To trust a CA, download and store the web interface CA certificate into the folder
+`trusted_cas`. 
+
+1. Download the certificate associated with the web interface and export to a pem format. 
+
+    ksctl interface certificates get --name web --icertfile <desired-filename>.pem
+    
+2. Copy this file to the `trusted_cas` folder.
+    
+3. Use openssl to retrieve the Common Name (CN) of the certificate, which will become the server_name value in Prometheus.
+    
+    openssl x509 -noout -subject -in <your-file>.pem
+    
+    Example response:
+    
+    subject=C = US, ST = MD, L = Belcamp, O = Gemalto, CN = web.keysecure.local
+    
+    The `CN` value, web.keysecure.local, is the value needed for Prometheus configuration file.
+    
+
+4. Then configure the path and the server name of the certificate
 in the Prometheus configuration file (`prometheus.yml`), for example:
 
 ```
