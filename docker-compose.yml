@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.31.1
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./trusted_cas:/trusted_cas
+      - prometheus:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=30d"
+      - "--storage.tsdb.retention.size=1GB"
+    ports:
+      - 9090:9090
+
+  grafana:
+    image: grafana/grafana:8.2.5
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./provisioning:/etc/grafana/provisioning
+      - ./provisioning/dashboards/home.json:/usr/share/grafana/public/dashboards/home.json
+
+volumes:
+  grafana_data:
+  prometheus:
+
