@@ -176,9 +176,9 @@ Open Grafana http://localhost:3000.
 
 ### Dashboards
 
-By default this stack comes bundled with four dashboards:
+By default this example setup comes bundled with a number of dashboards, such as:
 
-- CipherTrust Manager Services
+- CipherTrust Manager Resources
 
   This dashboards shows statistics about resources specific to CipherTrust
   Manager such as the number of audit records and keys and the rate of creation
@@ -186,17 +186,27 @@ By default this stack comes bundled with four dashboards:
 
 - CipherTrust Manager HTTP Traffic
 
-  This dashbaord shows statistics about the HTTP API such as the numbers of
+  This dashboard shows statistics about the HTTP API such as the numbers of
   requests per second per API and the average response time. It also for example
   shows the number of HTTP 500 errors.
 
+- CipherTrust Manager Host
+
+  This dashboard shows statistics about the host operating system with
+  information such as the CPU usage, memory usage and disk usage.
+
 - CipherTrust Manager Services
 
-  This dashbaord shows statistics about the various services running inside
+  This dashboard shows statistics about the various services running inside
   the appliance with information such as the CPU usage and memory usage.
+
+- CipherTrust Manager NAE
+
+  This dashboard shows statistics about the NAE protocol with information such
+  as response time and processing time.
 
 - CipherTrust Manager Developer
 
-  This dashbaord shows statistics various statistics more targeted for
+  This dashboard shows statistics various statistics more targeted for
   developers with deep knowledge about the inner details of the product.
 
