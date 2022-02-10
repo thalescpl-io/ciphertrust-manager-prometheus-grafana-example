@@ -86,21 +86,21 @@ To trust a CA, download and store the web interface CA certificate into the fold
     ```
     ksctl interfaces certificate get --name web --icertfile web-keysecure-local.pem
     ```
-    
+
 2. Copy this file to the `trusted_cas` folder.
-    
-3. Use openssl to retrieve the Common Name (CN) of the certificate, which will become the server_name value in Prometheus.
-    
+
+3. Use OpenSSL to retrieve the Common Name (CN) of the certificate, which will become the server_name value in Prometheus.
+
     ```
     openssl x509 -noout -subject -in web-keysecure-local.pem
     ```
-    
+
     Example response:
-    
+
     `subject=C = US, ST = MD, L = Belcamp, O = Gemalto, CN = web.keysecure.local`
-    
+
     The `CN` value, web.keysecure.local, is the value needed for Prometheus configuration file.
-    
+
 
 4. Then configure the path and the server name of the certificate
 in the Prometheus configuration file (`prometheus.yml`), for example:
