@@ -195,7 +195,7 @@
           "refId": "D"
         }
       ],
-      "title": "Node Metrics",
+      "title": "Cluster Metrics",
       "transformations": [
         {
           "id": "merge",
@@ -1170,7 +1170,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "CipherTrust Manager Node Metrics",
+  "title": "CipherTrust Manager Cluster",
   "uid": "SiucbekVz",
   "version": 1
 }
