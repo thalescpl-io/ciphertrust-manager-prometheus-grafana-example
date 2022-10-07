@@ -210,7 +210,7 @@ By default this example setup comes bundled with a number of dashboards, such as
   This dashboard shows statistics various statistics more targeted for
   developers with deep knowledge about the inner details of the product.
 
-- CipherTrust Manager Node Metrics
+- CipherTrust Manager Cluster
 
   This dashboard shows the statistics for the various node metrics for 
   a single node in a clustered system such as various lags(replay, write, 
