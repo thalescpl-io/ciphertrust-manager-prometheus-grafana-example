@@ -217,5 +217,5 @@ By default this example setup comes bundled with a number of dashboards, such as
   sent and flush) and their sizes, catchup interval, apply rate, connect 
   time, uptime for the connection, whether replication is blocked and 
   whether a node is connected. The node metrics are available in CipherTrust 
-  Manager v2.10.0.
+  Manager version 2.10.0 or higher.
 
