@@ -210,3 +210,12 @@ By default this example setup comes bundled with a number of dashboards, such as
   This dashboard shows statistics various statistics more targeted for
   developers with deep knowledge about the inner details of the product.
 
+- CipherTrust Manager Cluster
+
+  This dashboard shows the statistics for the various node metrics for 
+  a single node in a clustered system such as various lags(replay, write, 
+  sent and flush) and their sizes, catchup interval, apply rate, connect 
+  time, uptime for the connection, whether replication is blocked and 
+  whether a node is connected. The cluster metrics are available in CipherTrust 
+  Manager version 2.10.0 or higher.
+
