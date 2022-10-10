@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1661753440626,
+  "iteration": 1665408020189,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -208,14 +208,23 @@
               "Time": true,
               "job": true
             },
-            "indexByName": {},
+            "indexByName": {
+              "Time": 0,
+              "Value #A": 4,
+              "Value #B": 5,
+              "Value #C": 6,
+              "Value #D": 7,
+              "host": 2,
+              "instance": 1,
+              "job": 3
+            },
             "renameByName": {
               "Value #A": "Connected?",
               "Value #B": "Replication Blocked?",
               "Value #C": "Connect Time",
               "Value #D": "Uptime",
-              "host": "Origin Node",
-              "instance": "Local Node",
+              "host": "Target Node",
+              "instance": "Origin Node",
               "job": ""
             }
           }
