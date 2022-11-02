@@ -218,11 +218,10 @@ By default this example setup comes bundled with a number of dashboards, such as
   time, uptime for the connection, whether replication is blocked and 
   whether a node is connected. The cluster metrics are available in CipherTrust 
   Manager version 2.10.0 or higher.
-  
-  - CipherTrust Manager KMIP Key Management
+
+- CipherTrust Manager KMIP Key Management
 
   This dashboard shows the statistics for the various KMIP key management 
   operations like create, register, activate etc. The dashboard displays total 
   number of and rate of successful and failed for each KMIP key management operation. 
   This dashboard is available in CipherTrust Manager version 2.11.0 or higher.
-
