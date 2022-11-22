@@ -230,5 +230,5 @@ By default this example setup comes bundled with a number of dashboards, such as
 
   This dashboard shows the statistics for the various NAE key management and crypto
   operations like Key Generate, Authenticate, Key Delete etc. The dashboard displays total 
-  number of rate of successful and failed for each NAE-XML operations. 
+  number of and rate of successful and failed for each NAE-XML operations. 
   This dashboard is available in CipherTrust Manager version 2.11.0 or higher.
