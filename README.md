@@ -225,3 +225,10 @@ By default this example setup comes bundled with a number of dashboards, such as
   operations like create, register, activate etc. The dashboard displays total 
   number of and rate of successful and failed for each KMIP key management operation. 
   This dashboard is available in CipherTrust Manager version 2.11.0 or higher.
+  
+- CipherTrust Manager NAE-XML Statistics
+
+  This dashboard shows the statistics for the various NAE key management and crypto
+  operations like Key Generate, Authenticate, Key Delete etc. The dashboard displays total 
+  number of rate of successful and failed for each NAE-XML operations. 
+  This dashboard is available in CipherTrust Manager version 2.11.0 or higher.
