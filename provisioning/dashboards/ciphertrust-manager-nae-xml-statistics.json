@@ -23,7 +23,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 12,
-  "iteration": 1669118951477,
+  "iteration": 1669193535884,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -190,7 +190,7 @@
               "options": {
                 "mode": "exclude",
                 "names": [
-                  "Cryptographic Operation"
+                  "Key Names"
                 ],
                 "prefix": "All except:",
                 "readOnly": true
@@ -396,6 +396,23 @@
           "interval": "",
           "legendFormat": "Cryptographic Operation",
           "refId": "U"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_nae_key_management_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Key Names\"}[$__rate_interval]) + rate(ciphertrust_nae_nae_key_management_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Key Names\"}[$__rate_interval]))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Key Names",
+          "refId": "V"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_nae_key_management_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Key Usage\"}[$__rate_interval]) + rate(ciphertrust_nae_nae_key_management_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Key Usage\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Key Usage",
+          "refId": "W"
         }
       ],
       "title": "Rate of Operations",
