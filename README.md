@@ -181,8 +181,13 @@ By default this example setup comes bundled with a number of dashboards, such as
 - CipherTrust Manager Resources
 
   This dashboards shows statistics about resources specific to CipherTrust
-  Manager such as the number of audit records and keys and the rate of creation
-  for them. It also for example displays the number of crypto operations.
+  Manager such as the number of audit records, key and key-rotations, backups,
+  users and licensing. It also displays statistics related to these operations
+  like key-rotations in a minute, no. of crypto operations, license unit consumption
+  percentage, etc. 
+
+  NOTE: The domain filter for this dashboard is only applicable to "Total Number Of 
+  Group Users in the System" and "Number of License Units Consumed" panels.
 
 - CipherTrust Manager HTTP Traffic
 
