@@ -1,0 +1,501 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 13,
+  "iteration": 1669281857094,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "filterable": true
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "showHeader": true
+      },
+      "pluginVersion": "8.2.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\"}) without (_name_)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "title": "KMIP Operations",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "instance": true,
+              "job": true,
+              "service": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "Value #A": "Total Successful",
+              "Value #B": "Total Failure",
+              "operation": "Operation"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Total Successful"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Decrypt"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Create\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Create\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "Create",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Register\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Register\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Register",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Get",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get Attributes\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get Attributes\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Get Attributes",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get Attribute List\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get Attribute List\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Get Attribute List",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Add Attribute\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Add Attribute\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Add Attribute",
+          "refId": "F"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Modify Attribute\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Modify Attribute\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Modify Attribute",
+          "refId": "G"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Delete Attribute\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Delete Attribute\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Delete Attribute",
+          "refId": "H"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Locate\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Locate\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Locate",
+          "refId": "I"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Query\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Query\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Query",
+          "refId": "J"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Create Key Pair\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Create Key Pair\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Create Key Pair",
+          "refId": "K"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Discover Versions\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Discover Versions\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Discover Versions",
+          "refId": "L"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Check\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Check\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Check",
+          "refId": "M"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Activate\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Activate\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Activate",
+          "refId": "N"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Revoke\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Revoke\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Revoke",
+          "refId": "O"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Destroy\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Destroy\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Destroy",
+          "refId": "P"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Encrypt\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Encrypt\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Encrypt",
+          "refId": "Q"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Decrypt\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Decrypt\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Decrypt",
+          "refId": "R"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Sign\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Sign\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Sign",
+          "refId": "S"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"SignV\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"SignV\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "SignV",
+          "refId": "T"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Mac\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Mac\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Mac",
+          "refId": "U"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"MacV\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"MacV\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "MacV",
+          "refId": "V"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"ReKey\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"ReKey\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "ReKey",
+          "refId": "W"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"ReKey Key Pair\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"ReKey Key Pair\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "ReKey Key Pair",
+          "refId": "X"
+        }
+      ],
+      "title": "Rate of Operation",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 32,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": null,
+        "definition": "label_values(instance)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "instances",
+        "multi": true,
+        "name": "instances",
+        "options": [],
+        "query": {
+          "query": "label_values(instance)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "CipherTrust Manager"
+          ],
+          "value": [
+            "CipherTrust Manager"
+          ]
+        },
+        "datasource": null,
+        "definition": "label_values(job)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "job",
+        "multi": true,
+        "name": "job",
+        "options": [],
+        "query": {
+          "query": "label_values(job)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "CipherTrust Manager KMIP",
+  "uid": "cnm0rBdVk",
+  "version": 5
+}
