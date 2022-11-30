@@ -23,7 +23,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 12,
-  "iteration": 1669193535884,
+  "iteration": 1669800474924,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -58,7 +58,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 17,
+        "h": 13,
         "w": 12,
         "x": 0,
         "y": 0
@@ -210,7 +210,7 @@
         ]
       },
       "gridPos": {
-        "h": 17,
+        "h": 13,
         "w": 12,
         "x": 12,
         "y": 0
@@ -418,6 +418,172 @@
       "title": "Rate of Operations",
       "transformations": [],
       "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "Total time to read a request and respond to it.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 10,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 13
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "(rate(ciphertrust_nae_xml_response_time_seconds_sum{instance =~ \"$instances\" ,job =~ \"$job\"}[1m]) / rate(ciphertrust_nae_xml_response_time_seconds_count{instance =~ \"$instances\" ,job =~ \"$job\"}[1m]))",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "title": "XML Response Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "description": "Time to process a NAE XML request (excludes time reading/parsing request, and excludes time sending response)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 10,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 13
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "(rate(ciphertrust_nae_xml_processing_time_seconds_sum{instance =~ \"$instances\", job =~ \"$job\"}[1m]) / rate(ciphertrust_nae_xml_processing_time_seconds_count{instance =~ \"$instances\", job =~ \"$job\"}[1m]))",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "title": "XML Processing Time",
+      "type": "timeseries"
     }
   ],
   "refresh": "",
@@ -496,7 +662,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "CipherTrust Manager NAE-XML Operations",
+  "title": "CipherTrust Manager NAE",
   "uid": "oSXaoCv4k",
-  "version": 3
+  "version": 4
 }
