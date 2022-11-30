@@ -200,11 +200,6 @@ By default this example setup comes bundled with a number of dashboards, such as
   This dashboard shows statistics about the various services running inside
   the appliance with information such as the CPU usage and memory usage.
 
-- CipherTrust Manager NAE
-
-  This dashboard shows statistics about the NAE protocol with information such
-  as response time and processing time.
-
 - CipherTrust Manager Developer
 
   This dashboard shows statistics various statistics more targeted for
@@ -219,9 +214,17 @@ By default this example setup comes bundled with a number of dashboards, such as
   whether a node is connected. The cluster metrics are available in CipherTrust 
   Manager version 2.10.0 or higher.
 
-- CipherTrust Manager KMIP Key Management
+- CipherTrust Manager KMIP
 
   This dashboard shows the statistics for the various KMIP key management 
   operations like create, register, activate etc. The dashboard displays total 
   number of and rate of successful and failed for each KMIP key management operation. 
+  This dashboard is available in CipherTrust Manager version 2.11.0 or higher.
+  
+- CipherTrust Manager NAE
+
+  This dashboard shows the statistics for the various NAE key management and crypto
+  operations like Key Generate, Authenticate, Key Delete etc. The dashboard displays total 
+  number of and rate of successful and failed for each NAE-XML operations. This dashboard also shows statistics about the NAE protocol with information such
+  as response time and processing time.
   This dashboard is available in CipherTrust Manager version 2.11.0 or higher.
