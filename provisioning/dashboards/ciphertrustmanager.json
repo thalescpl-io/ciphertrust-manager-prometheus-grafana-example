@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1669354275734,
+  "iteration": 1672825469906,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -77,7 +77,7 @@
       "targets": [
         {
           "exemplar": false,
-          "expr": "ciphertrust_user_management_group_users{instance =~ \"$instances\", domain = \"\", group = \"\"}",
+          "expr": "ciphertrust_user_management_total_users{instance =~ \"$instances\"}",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -86,21 +86,12 @@
         },
         {
           "exemplar": false,
-          "expr": "ciphertrust_user_management_group_users{instance =~ \"$instances\", domain =~ \"$domain\", group = \"\", domain != \"\"}",
+          "expr": "ciphertrust_user_management_group_users{instance =~ \"$instances\"}",
           "hide": false,
           "instant": false,
           "interval": "",
-          "legendFormat": "Total Users in {{domain}} domain",
+          "legendFormat": "Users in group : {{group}}",
           "refId": "A"
-        },
-        {
-          "exemplar": false,
-          "expr": "ciphertrust_user_management_group_users{instance =~ \"$instances\", domain =~ \"$domain\", domain != \"\", group != \"\"}",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "Group: {{group}} Domain: {{domain}} ",
-          "refId": "C"
         }
       ],
       "timeFrom": null,
@@ -342,12 +333,12 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "ciphertrust_license_manager_number_of_consumed_license_units{instance =~ \"$instances\", domain =~ \"$domain\"}",
+          "expr": "ciphertrust_license_manager_number_of_consumed_license_units{instance =~ \"$instances\"}",
           "format": "time_series",
           "hide": false,
           "instant": false,
           "interval": "",
-          "legendFormat": "{{instance}} / Type: {{feature}} Domain: {{domain}}",
+          "legendFormat": "{{instance}} / Type: {{feature}}",
           "refId": "B"
         }
       ],
@@ -537,7 +528,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "((sum(ciphertrust_license_manager_number_of_consumed_license_units{instance =~ \"$instances\"}) by (instance,feature)) / (sum(ciphertrust_license_manager_total_number_of_license_units{instance =~ \"$instances\"}) by (instance,feature))) *100",
+          "expr": "(ciphertrust_license_manager_number_of_consumed_license_units{instance =~ \"$instances\"} / ciphertrust_license_manager_total_number_of_license_units{instance =~ \"$instances\"}) * 100",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -714,6 +705,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "description": "This panel gives information about the trend of Audit Records. Please note that these are NOT absolute figures.",
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -751,14 +743,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "increase(ciphertrust_audit_log_client_logs_total{instance =~ \"$instances\", service = \"audit_log\"}[1m])",
+          "expr": "increase(ciphertrust_audit_log_client_logs_total{instance =~ \"$instances\", service = \"audit_log\"}[5m])",
           "interval": "",
           "legendFormat": "{{instance}} / client",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "increase(ciphertrust_audit_log_records_total{instance =~ \"$instances\", service = \"audit_log\"}[1m])",
+          "expr": "increase(ciphertrust_audit_log_records_total{instance =~ \"$instances\", service = \"audit_log\"}[5m])",
           "interval": "",
           "legendFormat": "{{instance}} / server",
           "refId": "B"
@@ -768,7 +760,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Audit Records Created In The Last Minute",
+      "title": "Audit Records Created In Last Five Minutes",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1138,6 +1130,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "description": "This panel gives information about the trend of Key-Rotations. Please note that these are NOT absolute figures.",
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1161,7 +1154,7 @@
       "linewidth": 1,
       "nullPointMode": "connected",
       "options": {
-        "alertThreshold": true
+        "alertThreshold": false
       },
       "percentage": false,
       "pluginVersion": "8.2.5",
@@ -1171,18 +1164,18 @@
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
       "targets": [
         {
           "exemplar": true,
-          "expr": "increase(ciphertrust_key_vault_key_rotations{instance =~ \"$instances\", source != \"scheduler\"}[1m])",
+          "expr": "increase(ciphertrust_key_vault_key_rotations{instance =~ \"$instances\", source != \"scheduler\"}[5m])",
           "interval": "",
           "legendFormat": "{{instance}} / {{source}}",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "increase(ciphertrust_key_vault_key_rotations{instance =~ \"$instances\", source = \"scheduler\"}[1m])",
+          "expr": "increase(ciphertrust_key_vault_key_rotations{instance =~ \"$instances\", source = \"scheduler\"}[5m])",
           "hide": false,
           "interval": "",
           "legendFormat": "{{instance}} / scheduler job: {{job_name}} expired: {{expired}}",
@@ -1193,7 +1186,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Key Rotations In The Last Minute",
+      "title": "Key Rotations In Last Five Minutes",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1440,7 +1433,7 @@
       "type": "table"
     }
   ],
-  "refresh": "",
+  "refresh": "30s",
   "schemaVersion": 32,
   "style": "dark",
   "tags": [],
@@ -1476,37 +1469,6 @@
         "skipUrlSync": false,
         "sort": 5,
         "type": "query"
-      },
-      {
-        "allValue": null,
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": null,
-        "definition": "label_values(domain)",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": true,
-        "label": "domain",
-        "multi": true,
-        "name": "domain",
-        "options": [],
-        "query": {
-          "query": "label_values(domain)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
       }
     ]
   },
@@ -1518,5 +1480,5 @@
   "timezone": "",
   "title": "CipherTrust Manager Resources",
   "uid": "vDFZNl5nz",
-  "version": 6
+  "version": 1
 }
