@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1672825469906,
+  "iteration": 1673336732447,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -33,6 +33,10 @@
           "color": {
             "mode": "thresholds"
           },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto"
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -40,10 +44,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -51,27 +51,14 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 24,
+        "h": 8,
+        "w": 12,
         "x": 0,
         "y": 0
       },
       "id": 21,
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": false,
-        "text": {
-          "titleSize": 11,
-          "valueSize": 50
-        }
+        "showHeader": true
       },
       "pluginVersion": "8.2.5",
       "targets": [
@@ -79,16 +66,89 @@
           "exemplar": false,
           "expr": "ciphertrust_user_management_total_users{instance =~ \"$instances\"}",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "Total Users across the System",
           "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total  Users in the System",
+      "transformations": [
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "long"
+          }
         },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "job": true,
+              "service": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "Total Users across the System": 5,
+              "__name__": 1,
+              "instance": 2,
+              "job": 3,
+              "service": 4
+            },
+            "renameByName": {
+              "Total Users across the System": "Total Users"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 27,
+      "options": {
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "8.2.5",
+      "targets": [
         {
           "exemplar": false,
           "expr": "ciphertrust_user_management_group_users{instance =~ \"$instances\"}",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "Users in group : {{group}}",
           "refId": "A"
@@ -96,8 +156,44 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Total Number Of Group Users in the System",
-      "type": "gauge"
+      "title": "Group Users in the System",
+      "transformations": [
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "long"
+          }
+        },
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "job": true,
+              "service": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "Value": 5,
+              "__name__": 1,
+              "group": 3,
+              "instance": 2,
+              "job": 4,
+              "service": 6
+            },
+            "renameByName": {
+              "Value": "Users",
+              "group": "Group"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": null,
@@ -205,7 +301,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 8
       },
       "id": 20,
       "options": {
@@ -302,7 +398,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 9
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 24,
@@ -398,7 +494,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 17
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 10,
@@ -497,7 +593,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 17
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 25,
@@ -612,7 +708,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 25
+        "y": 24
       },
       "hiddenSeries": false,
       "id": 18,
@@ -712,7 +808,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 25
+        "y": 24
       },
       "hiddenSeries": false,
       "id": 17,
@@ -811,7 +907,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 33
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 4,
@@ -910,7 +1006,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 33
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 16,
@@ -1041,6 +1137,18 @@
           },
           {
             "matcher": {
+              "id": "byType",
+              "options": "number"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Rotations"
+              }
+            ]
+          },
+          {
+            "matcher": {
               "id": "byName",
               "options": "expired"
             },
@@ -1057,7 +1165,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 41
+        "y": 40
       },
       "id": 23,
       "options": {
@@ -1137,7 +1245,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 41
+        "y": 40
       },
       "hiddenSeries": false,
       "id": 19,
@@ -1237,7 +1345,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 49
+        "y": 48
       },
       "hiddenSeries": false,
       "id": 22,
@@ -1375,7 +1483,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 49
+        "y": 48
       },
       "id": 26,
       "options": {
