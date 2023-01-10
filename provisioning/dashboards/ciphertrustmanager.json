@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1673336732447,
+  "iteration": 1673337738502,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1339,6 +1339,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "description": "This panel gives information about the trend of backup creation time. Please note that these are NOT absolute figures.",
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1588,5 +1589,5 @@
   "timezone": "",
   "title": "CipherTrust Manager Resources",
   "uid": "vDFZNl5nz",
-  "version": 1
+  "version": 3
 }
