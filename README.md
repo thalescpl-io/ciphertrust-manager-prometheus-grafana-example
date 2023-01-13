@@ -229,3 +229,10 @@ By default this example setup comes bundled with a number of dashboards, such as
   number of and rate of successful and failed for each NAE-XML operations. This dashboard also shows statistics about the NAE protocol with information such
   as response time and processing time.
   This dashboard is available in CipherTrust Manager version 2.11.0 or higher.
+
+- CipherTrust Manager CTE Resources
+
+  This dashboard shows the statistics for the various CTE Resources like CTE Clients,
+  CTE Groups and CTE Clients Health Status. The dashboard displays total number of operation
+  performed in respective to CTE Clients and Group.
+  This dashboard is available in CipherTrust Manager version 2.12.0 or higher.
