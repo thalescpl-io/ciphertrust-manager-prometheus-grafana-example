@@ -22,8 +22,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 14,
-  "iteration": 1673608262408,
+  "id": 16,
+  "iteration": 1673954671455,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -206,8 +206,69 @@
       "timeShift": null,
       "title": "CTE Groups",
       "type": "piechart"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.2.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ciphertrust_cte_management_cte_guardpoints{instance =~ \"$instances\"}",
+          "interval": "",
+          "legendFormat": "{{guard_state}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "CTE Guard Points State",
+      "type": "piechart"
     }
   ],
+  "refresh": "30s",
   "schemaVersion": 32,
   "style": "dark",
   "tags": [],
