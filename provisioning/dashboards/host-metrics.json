@@ -433,7 +433,7 @@
       "repeatDirection": "v",
       "targets": [
         {
-          "expr": "1 - node_memory_MemFree_bytes{instance=~\"$host\"} / node_memory_MemTotal_bytes{instance=~\"$host\"}",
+          "expr": "1 - node_memory_MemAvailable_bytes{instance=~\"$host\"} / node_memory_MemTotal_bytes{instance=~\"$host\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "",
