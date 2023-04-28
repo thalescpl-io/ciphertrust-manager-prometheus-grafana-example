@@ -7,7 +7,8 @@ CPU usage and memory usage of [CipherTrust Manager](https://thalesdocs.com/ctp/c
 
 ## Pre-Requirements
 
-* CipherTrust Manager v2.7.0 or later
+* Minimum CipherTrust Manager version 2.7.0 or later
+  * Some resources might require a newer version, see the Dashboards sections for more details
 * Docker
 * Docker Compose (`docker-compose`)
 * GNU Make
@@ -183,7 +184,9 @@ By default this example setup comes bundled with a number of dashboards, such as
   This dashboards shows statistics about resources specific to CipherTrust
   Manager such as the number of audit records, key and key-rotations, backups,
   users and licensing. It also displays statistics related to these operations
-  like no. of crypto operations, license unit consumption percentage, etc. 
+  like no. of crypto operations, license unit consumption percentage, etc.
+  
+  User information requries CipherTrust Manager version 2.11.0 or higher.
 
 - CipherTrust Manager HTTP Traffic
 
@@ -212,27 +215,32 @@ By default this example setup comes bundled with a number of dashboards, such as
   a single node in a clustered system such as various lags(replay, write, 
   sent and flush) and their sizes, catchup interval, apply rate, connect 
   time, uptime for the connection, whether replication is blocked and 
-  whether a node is connected. The cluster metrics are available in CipherTrust 
-  Manager version 2.10.0 or higher.
+  whether a node is connected.
+  
+  Cluster metrics requries CipherTrust Manager version 2.10.0 or higher.
 
 - CipherTrust Manager KMIP
 
   This dashboard shows the statistics for the various KMIP key management 
   operations like create, register, activate etc. The dashboard displays total 
   number of and rate of successful and failed for each KMIP key management operation. 
-  This dashboard is available in CipherTrust Manager version 2.11.0 or higher.
+  
+  KMIP metrics requires CipherTrust Manager version 2.11.0 or higher.
   
 - CipherTrust Manager NAE
 
   This dashboard shows the statistics for the various NAE key management and crypto
   operations like Key Generate, Authenticate, Key Delete etc. The dashboard displays total 
-  number of and rate of successful and failed for each NAE-XML operations. This dashboard also shows statistics about the NAE protocol with information such
-  as response time and processing time.
-  This dashboard is available in CipherTrust Manager version 2.11.0 or higher.
+  number of and rate of successful and failed for each NAE-XML operations. This dashboard
+  also shows statistics about the NAE protocol with information such as response time and
+  processing time.
+  
+  NAE metrics requires CipherTrust Manager version 2.11.0 or higher.
 
 - CipherTrust Manager CTE Resources
 
   This dashboard shows the statistics for the various CTE Resources like CTE Clients,
   CTE Groups and CTE Clients Health Status. The dashboard displays total number of operation
   performed in respective to CTE Clients and Group.
-  This dashboard is available in CipherTrust Manager version 2.12.0 or higher.
+  
+  CTE resoures metrics requires CipherTrust Manager version 2.12.0 or higher.
