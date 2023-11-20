@@ -244,3 +244,12 @@ By default this example setup comes bundled with a number of dashboards, such as
   performed in respective to CTE Clients and Group.
   
   CTE resoures metrics requires CipherTrust Manager version 2.12.0 or higher.
+
+- CipherTrust Manager Secrets
+
+  This dashboard shows the statistics for the various secrets (Akeyless) gateway operations like CPU utilization,
+  disk I/O operations, CPU load metrics, memory utilization, network interface I/O metrics & TCP connection,
+  current transaction number, total transaction by an admin client, total transaction limit per hour,
+  status of HTTP response and total number of requests.
+
+  Secrets metrics requires CipherTrust Manager version 2.15.0 or higher.
