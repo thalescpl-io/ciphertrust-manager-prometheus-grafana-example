@@ -252,4 +252,6 @@ By default this example setup comes bundled with a number of dashboards, such as
   current transaction number, total transaction by an admin client, total transaction limit per hour,
   status of HTTP response and total number of requests.
 
+  https://grafana.com/grafana/dashboards/16927-akeyless-gateway
+
   Secrets metrics requires CipherTrust Manager version 2.15.0 or higher.
