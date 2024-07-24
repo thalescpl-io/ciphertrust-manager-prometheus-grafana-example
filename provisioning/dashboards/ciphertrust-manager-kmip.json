@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -20,15 +23,15 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": null,
   "graphTooltip": 0,
-  "id": 13,
-  "iteration": 1669281857094,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -36,9 +39,13 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
-            "filterable": true
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
           },
+          "decimals": 0,
           "mappings": [],
           "noValue": "0",
           "thresholds": {
@@ -53,7 +60,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "none"
         },
         "overrides": []
       },
@@ -65,13 +73,30 @@
       },
       "id": 2,
       "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": [
+            "Value #A",
+            "Value #B"
+          ],
+          "reducer": [
+            "sum"
+          ],
+          "show": true
+        },
         "showHeader": true
       },
-      "pluginVersion": "8.2.5",
+      "pluginVersion": "10.1.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\"}",
+          "expr": "floor(increase(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\"}[$__range]))",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -79,8 +104,13 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\"}) without (_name_)",
+          "expr": "sum(floor(increase(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\"}[$__range]))) without (_name_)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -129,13 +159,18 @@
       "type": "table"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -147,6 +182,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -186,7 +222,7 @@
               "options": {
                 "mode": "exclude",
                 "names": [
-                  "Decrypt"
+                  "Total"
                 ],
                 "prefix": "All except:",
                 "readOnly": true
@@ -216,14 +252,20 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Create\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Create\"}[$__rate_interval]))",
           "interval": "",
@@ -231,6 +273,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Register\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Register\"}[$__rate_interval]))",
           "hide": false,
@@ -239,6 +285,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get\"}[$__rate_interval]))",
           "hide": false,
@@ -247,6 +297,10 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get Attributes\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get Attributes\"}[$__rate_interval]))",
           "hide": false,
@@ -255,6 +309,10 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get Attribute List\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Get Attribute List\"}[$__rate_interval]))",
           "hide": false,
@@ -263,6 +321,10 @@
           "refId": "E"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Add Attribute\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Add Attribute\"}[$__rate_interval]))",
           "hide": false,
@@ -271,6 +333,10 @@
           "refId": "F"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Modify Attribute\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Modify Attribute\"}[$__rate_interval]))",
           "hide": false,
@@ -279,6 +345,10 @@
           "refId": "G"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Delete Attribute\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Delete Attribute\"}[$__rate_interval]))",
           "hide": false,
@@ -287,6 +357,10 @@
           "refId": "H"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Locate\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Locate\"}[$__rate_interval]))",
           "hide": false,
@@ -295,6 +369,10 @@
           "refId": "I"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Query\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Query\"}[$__rate_interval]))",
           "hide": false,
@@ -303,6 +381,10 @@
           "refId": "J"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Create Key Pair\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Create Key Pair\"}[$__rate_interval]))",
           "hide": false,
@@ -311,6 +393,10 @@
           "refId": "K"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Discover Versions\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Discover Versions\"}[$__rate_interval]))",
           "hide": false,
@@ -319,6 +405,10 @@
           "refId": "L"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Check\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Check\"}[$__rate_interval]))",
           "hide": false,
@@ -327,6 +417,10 @@
           "refId": "M"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Activate\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Activate\"}[$__rate_interval]))",
           "hide": false,
@@ -335,6 +429,10 @@
           "refId": "N"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Revoke\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Revoke\"}[$__rate_interval]))",
           "hide": false,
@@ -343,6 +441,10 @@
           "refId": "O"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Destroy\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Destroy\"}[$__rate_interval]))",
           "hide": false,
@@ -351,6 +453,10 @@
           "refId": "P"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Encrypt\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Encrypt\"}[$__rate_interval]))",
           "hide": false,
@@ -359,6 +465,10 @@
           "refId": "Q"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Decrypt\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Decrypt\"}[$__rate_interval]))",
           "hide": false,
@@ -367,6 +477,10 @@
           "refId": "R"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Sign\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Sign\"}[$__rate_interval]))",
           "hide": false,
@@ -375,6 +489,10 @@
           "refId": "S"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"SignV\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"SignV\"}[$__rate_interval]))",
           "hide": false,
@@ -383,6 +501,10 @@
           "refId": "T"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Mac\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"Mac\"}[$__rate_interval]))",
           "hide": false,
@@ -391,6 +513,10 @@
           "refId": "U"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"MacV\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"MacV\"}[$__rate_interval]))",
           "hide": false,
@@ -399,6 +525,10 @@
           "refId": "V"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"ReKey\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"ReKey\"}[$__rate_interval]))",
           "hide": false,
@@ -407,6 +537,10 @@
           "refId": "W"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "sum(rate(ciphertrust_nae_kmip_operation_success{instance =~ \"$instances\", job=~\"$job\", operation =~ \"ReKey Key Pair\"}[$__rate_interval]) + rate(ciphertrust_nae_kmip_operation_failure{instance =~ \"$instances\", job=~\"$job\", operation =~ \"ReKey Key Pair\"}[$__rate_interval]))",
           "hide": false,
@@ -416,17 +550,53 @@
         }
       ],
       "title": "Rate of Operation",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "Create",
+                "Register",
+                "Activate",
+                "Revoke",
+                "Destroy",
+                "Get",
+                "Get Attributes",
+                "Encrypt",
+                "Decrypt",
+                "Get Attribute List",
+                "Sign",
+                "Add Attribute",
+                "Modify Attribute",
+                "Mac",
+                "Delete Attribute",
+                "SignV",
+                "MacV",
+                "ReKey",
+                "ReKey Key Pair",
+                "Locate",
+                "Query",
+                "Create Key Pair",
+                "Check",
+                "Discover Versions"
+              ],
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
       "type": "timeseries"
     }
   ],
   "refresh": "",
-  "schemaVersion": 32,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -436,10 +606,11 @@
             "$__all"
           ]
         },
-        "datasource": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
         "definition": "label_values(instance)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "instances",
@@ -457,7 +628,6 @@
         "type": "query"
       },
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": [
@@ -467,10 +637,11 @@
             "CipherTrust Manager"
           ]
         },
-        "datasource": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P1809F7CD0C75ACF3"
+        },
         "definition": "label_values(job)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "job",
@@ -490,12 +661,13 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "CipherTrust Manager KMIP",
   "uid": "cnm0rBdVk",
-  "version": 5
+  "version": 1,
+  "weekStart": ""
 }
