@@ -10,7 +10,7 @@ CPU usage and memory usage of [CipherTrust Manager](https://thalesdocs.com/ctp/c
 * Minimum CipherTrust Manager version 2.7.0 or later
   * Some resources might require a newer version, see the Dashboards sections for more details
 * Docker
-* Docker Compose (`docker-compose`)
+* Docker Compose Plugin (`docker compose`)
 * GNU Make
 
 
@@ -152,7 +152,7 @@ The state of the target can be determined from the `Status|Target` menu. It
 should indicate that the state should be `UP`, and there should be no error.
 
 If either of these are wrong, then verify the metrics endpoint is working by doing a sanity test via the CLI tool (`ksctl metrics prometheus get --api-token <api-token>`), or curl (`curl -k 'https://<host-name>/api/v1/system/metrics/prometheus' -H 'Authorization: Bearer <api-token>' --compressed
-`). The Docker Compose logs can be used to debug problems too (`docker-compose logs -f`).
+`). The Docker Compose logs can be used to debug problems too (`docker compose logs -f`).
 
 
 ### Retention
