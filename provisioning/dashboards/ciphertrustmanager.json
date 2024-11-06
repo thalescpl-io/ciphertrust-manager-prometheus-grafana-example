@@ -29,10 +29,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -80,10 +77,7 @@
       "pluginVersion": "10.1.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": false,
           "expr": "ciphertrust_user_management_total_users{instance =~ \"$instances\"}",
           "hide": false,
@@ -127,10 +121,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -179,10 +170,7 @@
       "pluginVersion": "10.1.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": false,
           "expr": "ciphertrust_user_management_group_users{instance =~ \"$instances\"}",
           "hide": false,
@@ -232,10 +220,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "description": "Represents the count of connector licenses currently present in the system categorized according to their states (active/inactive). \nAlso shows the total license units which can be created for a particular feature.\nThe license unit count for:  \nDDC represents: maximum data allowance in TBs.  \nCCKM represents: maximum no. of cloud connections that can be added.  \nOthers: client units.",
       "fieldConfig": {
         "defaults": {
@@ -371,10 +356,7 @@
       "pluginVersion": "10.1.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "ciphertrust_license_manager_number_of_active_connector_licenses{instance =~ \"$instances\"}",
           "format": "table",
@@ -385,10 +367,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "sum(ciphertrust_license_manager_number_of_inactive_connector_licenses{instance =~ \"$instances\"}) without (__name__)",
           "format": "table",
@@ -399,10 +378,7 @@
           "refId": "B"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "sum(ciphertrust_license_manager_total_number_of_license_units{instance =~ \"$instances\"}) without (__name__)",
           "format": "table",
@@ -454,10 +430,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "description": "Represents number of consumed license units for a particular feature.\nThe license unit count for:  \nDDC represents: data usage in TBs.  \nCCKM represents: no. of cloud connections.  \nothers: client units.",
       "fill": 0,
       "fillGradient": 0,
@@ -495,10 +468,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "ciphertrust_license_manager_number_of_consumed_license_units{instance =~ \"$instances\"}",
           "format": "time_series",
@@ -547,10 +517,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -587,10 +554,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "rate(ciphertrust_audit_log_client_logs_total{instance =~ \"$instances\", service = \"audit_log\"}[1m])",
           "interval": "",
@@ -598,10 +562,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "rate(ciphertrust_audit_log_records_total{instance =~ \"$instances\", service = \"audit_log\"}[1m])",
           "interval": "",
@@ -646,10 +607,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
@@ -686,10 +644,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "(ciphertrust_license_manager_number_of_consumed_license_units{instance =~ \"$instances\"} / ciphertrust_license_manager_total_number_of_license_units{instance =~ \"$instances\"}) * 100",
           "format": "time_series",
@@ -757,10 +712,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -797,10 +749,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "ciphertrust_audit_log_client_logs_total{instance =~ \"$instances\", service = \"audit_log\"}",
           "interval": "",
@@ -808,10 +757,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "ciphertrust_audit_log_records_total{instance =~ \"$instances\", service = \"audit_log\"}",
           "interval": "",
@@ -856,10 +802,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "description": "This panel gives information about the trend of Audit Records. Please note that these are NOT absolute figures.",
       "fill": 0,
       "fillGradient": 0,
@@ -897,10 +840,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "increase(ciphertrust_audit_log_client_logs_total{instance =~ \"$instances\", service = \"audit_log\"}[5m])",
           "interval": "",
@@ -908,10 +848,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "increase(ciphertrust_audit_log_records_total{instance =~ \"$instances\", service = \"audit_log\"}[5m])",
           "interval": "",
@@ -952,10 +889,7 @@
       }
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1007,10 +941,7 @@
       "pluginVersion": "10.1.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "editorMode": "code",
           "exemplar": false,
           "expr": "ciphertrust_key_vault_deks_total",
@@ -1098,10 +1029,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1138,10 +1066,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "rate(http_response_time_seconds_count{instance =~ \"$instances\", code = \"200\", method = \"POST\", path = \"/encrypt\", service = \"crypto\"}[1m])",
           "format": "time_series",
@@ -1151,10 +1076,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "rate(http_response_time_seconds_count{instance =~ \"$instances\", code = \"200\", method = \"POST\", path = \"/decrypt\", service = \"crypto\"}[1m])",
           "instant": false,
@@ -1196,10 +1118,7 @@
       }
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1288,10 +1207,7 @@
       "pluginVersion": "10.1.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "ciphertrust_key_vault_key_rotations{instance =~ \"$instances\", source = \"scheduler\"}",
           "hide": false,
@@ -1301,10 +1217,7 @@
           "refId": "B"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "ciphertrust_key_vault_key_rotations{instance =~ \"$instances\", source != \"scheduler\"}",
           "hide": false,
@@ -1357,10 +1270,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "description": "This panel gives information about the trend of Key-Rotations. Please note that these are NOT absolute figures.",
       "fill": 0,
       "fillGradient": 0,
@@ -1398,10 +1308,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "increase(ciphertrust_key_vault_key_rotations{instance =~ \"$instances\", source != \"scheduler\"}[5m])",
           "interval": "",
@@ -1409,10 +1316,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "increase(ciphertrust_key_vault_key_rotations{instance =~ \"$instances\", source = \"scheduler\"}[5m])",
           "hide": false,
@@ -1458,10 +1362,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "description": "This panel gives information about the trend of backup creation time. Please note that these are NOT absolute figures.",
       "fill": 0,
       "fillGradient": 0,
@@ -1500,10 +1401,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "(increase(ciphertrust_backup_number_of_backups_taken_sum{instance =~ \"$instances\"}[1m]) / increase(ciphertrust_backup_number_of_backups_taken_count{instance =~ \"$instances\"}[1m]))",
           "instant": false,
@@ -1556,10 +1454,7 @@
       }
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1624,10 +1519,7 @@
       "pluginVersion": "10.1.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "exemplar": true,
           "expr": "ciphertrust_backup_number_of_backups_taken_count{instance =~ \"$instances\"}",
           "instant": true,
@@ -1675,10 +1567,7 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P1809F7CD0C75ACF3"
-      },
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1743,10 +1632,7 @@
       "pluginVersion": "10.1.5",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
+          "datasource": null,
           "editorMode": "code",
           "exemplar": true,
           "expr": "ciphertrust_key_vault_deks_total",
@@ -1809,10 +1695,7 @@
             "$__all"
           ]
         },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "P1809F7CD0C75ACF3"
-        },
+        "datasource": null,
         "definition": "label_values(instance)",
         "hide": 0,
         "includeAll": true,
