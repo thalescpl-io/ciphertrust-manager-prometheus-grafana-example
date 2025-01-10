@@ -256,7 +256,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "ciphertrust_cte_management_cte_guardpoints{instance =~ \"$instances\"}",
+          "expr": "sum by(guard_state) (ciphertrust_cte_management_cte_guardpoints{instance =~ \"$instances\"})",
           "interval": "",
           "legendFormat": "{{guard_state}}",
           "refId": "A"
