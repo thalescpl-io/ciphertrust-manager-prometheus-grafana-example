@@ -77,7 +77,6 @@
         {
           "exemplar": true,
           "expr": "ciphertrust_cte_management_cte_clients{instance =~ \"$instances\"}",
-          "intervalFactor": "2",
           "legendFormat": "{{clients_type}}",
           "refId": "A"
         }
